@@ -1,11 +1,6 @@
 :toc:
 :toc-placement!:
 
-:note-caption: :information_source:
-:tip-caption: :bulb:
-:important-caption: :heavy_exclamation_mark:
-:warning-caption: :warning:
-:caution-caption: :fire:
 
 = Guidebook
 Ron Kurr <rkurr@jvmguy.com>
@@ -23,8 +18,6 @@ Blah, blah, blah.
 
 .Context Diagram
 image::images/context-diagram.png[Context Diagram]
-
-. Technical and non-technical audience
 
 == Functional Overview
 . Highlight and summarize major functions of the software
