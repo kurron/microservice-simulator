@@ -1,5 +1,5 @@
 == Overview
-This project ...
+This project simulates a microservices based solution allowing for testing of the system's observability and fault tolerance.  The idea is that the individual nodes in the system can individually be instructed to change their behavior as the system is running to see how the system's operational aspects behave.  Is distributed tracing in place and providing expected information?  Do sick containers get replaced when they become unhealthy?  Does the scheduler automatically scale up and down based on the current load.  A secondary goal of the project is to try out the architecture described in https://www.safaribooksonline.com/library/view/the-tao-of/9781617293146/[ The Tao of Microservices] by Richard Rodger.  The emphasis on message based communication is an idea of heard before but this book does a nice job of weaving together the different aspects in a coherent strategy.  I'd like to see how it works in practice.
 
 == Guidebook
 Details about this project are contained in the link:guidebook/guidebook.adoc[guidebook] and should be considered mandatory reading prior to contributing to this project.
@@ -20,5 +20,6 @@ Details about this project are contained in the link:guidebook/guidebook.adoc[gu
 * This project is licensed under the http://www.apache.org/licenses/[Apache License Version 2.0, January 2004].
 * The guidebook structure was created by http://simonbrown.je/[Simon Brown] as part of his work on the https://c4model.com/[C4 Architectural Model].  His books can be https://leanpub.com/b/software-architecture[purchased from LeanPub].
 * Patrick Kua offered https://www.safaribooksonline.com/library/view/oreilly-software-architecture/9781491985274/video315451.html[his thoughts on a travel guide to a software system] which has been link:travel-guide/travel-guide.adoc[captured in this template].
+* https://www.safaribooksonline.com/library/view/the-tao-of/9781617293146/[ The Tao of Microservices] by Richard Rodger
 
 == List of Changes
