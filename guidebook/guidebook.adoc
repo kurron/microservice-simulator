@@ -87,8 +87,7 @@ The latency and throughput values are controlled by Operator, depending on the e
 . Technical people only
 
 == Code
-.Dynamic Routing Logic
-----
+=== Dynamic Routing Logic
 We need a mechanism that allows the Operator to configure different message routes using the same set of components so different system tests can be performed.  The *Routing Slip* pattern, in combination with AMQP's Headers Exchange, is a good fit for this problem.  https://www.cloudamqp.com/blog/2015-09-03-part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html[Headers Exchange] is used to route messages to the proper consumers based on the values of AMQP headers.
 
 .Headers Used For Routing
@@ -126,7 +125,6 @@ These headers are filled in whenever a message is sent to the Headers Exchange, 
         }
     ]
 }
-----
 ----
 
 
