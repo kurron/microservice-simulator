@@ -135,6 +135,17 @@ These headers are filled in whenever a message is sent to the Headers Exchange, 
 
 In the above example, there are two messages described in the sequence but notice that we are using a nested structure. The consumer will, concurrently, emit messages defined in the +recipient-list+ with the message headers containing the specified values.  The payload of the message will contain the values contained in the nested +recipient-list+, if any.  This structure gives the Operator the flexibility to create services that run serially and deep, concurrently and wide, or some combination of the two, depending on how deep the nesting goes.
 
+=== Simulated Service Failure
+We need the ability to have a service fail its health checks so that schedulers and altering systems can be tested.  The message payload contains a flag that tells the service to begin failing its health checks going forward.  That is to say, that this service invocation will succeed but from the health checks will begin to fail.
+
+.Recipient List Section
+[source,JSON]
+----
+{
+    <snip>
+    "fail-health-checks": true
+}
+----
 
 . Describe implementation details for important/complex parts of the system
 . homegrown frameworks
