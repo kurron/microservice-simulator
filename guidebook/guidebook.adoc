@@ -31,24 +31,7 @@ The system is conceptually very simple.  A simulated client will introduce a req
 image::images/sequence-diagram.png[Sequence Diagram]
 
 == Quality Attributes
-. Summarize key quality attributes
-. Performance (e.g. latency and throughput)
-. Scalability (e.g. data and traffic volumes)
-. Availability (e.g. uptime, downtime, scheduled maintenance, 24x7, 99.9%, etc)
-. Security (e.g. authentication, authorization, data confidentiality, etc)
-. Extensibility
-. Auditing
-. Monitoring and management
-. Reliability
-. Failover/disaster recovery targets (e.g. manual vs automatic, how long will it take?)
-. Business continuity
-. Interoperability
-. Legal, compliance and regulatory requirements (e.g. data protection act)
-. I18n and L10n
-. Accessibility
-. Usability
-. Use SMART (specific, measurable, achievable, relevant and timely) attributes
-. Technical people only
+The latency and throughput values are controlled by Operator, depending on the experiment being run.  Delays can be introduced into the containers to increase latency.  The Operator also has the option of using sequential or parallel communication algorithms to affect throughput.  Scalability and availability can be controlled by the Operator via the container scheduler being used.  To keep the implementation simple, no security protocols are part of the simulation.  When running in the Amazon cloud, native AWS monitoring and tracing solutions are used.  When running in a development environment, open source equivalents are used.
 
 == Constraints
 . Summarize the constraints your are working in and some of the decisions that have been made for you
