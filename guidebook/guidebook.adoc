@@ -90,14 +90,14 @@ The latency and throughput values are controlled by Operator, depending on the e
 .Dynamic Routing Logic
 We need a mechanism that allows the Operator to configure different message routes using the same set of components so different system tests can be performed.  The *Routing Slip* pattern, in combination with AMQP's Headers Exchange, is a good fit for this problem.  https://www.cloudamqp.com/blog/2015-09-03-part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html[Headers Exchange] is used to route messages to the proper consumers based on the values of AMQP headers.
 
-. Headers Used For Routing
+.Headers Used For Routing
 . *Message Type* -- can be either *Command* or *Event*
 . *Subject* -- the *what* or *whom* the message is about, e.g. *user* or *authenticator*
 . *Verb* -- in the case of a Command, what we want the Subject to do.  In the case of an Event, what the Subject has done. For example, *authenticate* or *authenticated*.
 
-These headers are filled in whenever a message is sent to the Headers Exchange, which routes the message to any interested parties.  Once the message arrives at its destination, the consumer needs to know what to do with the message.  That is where the Routing Slip comes into play.  Each message payload contains a routing slip section which contains a list of message coordinates (header values) that need to be emitted.
+These headers are filled in whenever a message is sent to the Headers Exchange, which routes the message to any interested parties.  Once the message arrives at its destination, the consumer needs to know what to do with the message.  That is where the Routing Slip comes into play.  Each message payload contains a routing slip section which contains a list of message coordinates (header values) that need to be emitted.  Only *Command* types are in the routing slip because each successful command implies an automatic generation of a companion event.
 
-.Optional Routing Slip Section
+.Routing Slip Section
 [source,JSON]
 ----
 {
@@ -106,28 +106,28 @@ These headers are filled in whenever a message is sent to the Headers Exchange, 
         {
             "type": "command",
             "subject": "user",
-            "verb": "authenticate"
-        },
-        {
-            "type": "event",
-            "subject": "user",
-            "verb": "failed authentication"
+            "verb": "create"
         },
         {
             "type": "command",
             "subject": "images",
-            "verb": "fetch"
+            "verb": "read"
         },
         {
-            "type": "event",
-            "subject": "images",
-            "verb": "fetched"
+            "type": "command",
+            "subject": "sounds",
+            "verb": "read"
+        },
+        {
+            "type": "command",
+            "subject": "user",
+            "verb": "update"
         }
     ]
 }
 ----
 
-In the above example, there are four messages described in the sequence.  The consumer will emit an event to the coordinates described in the first item in the list,  The remaining 3 items are placed in the message payload for the next consumer to process.  This is repeated until the routing slip list is empty.
+In the above example, there are four messages described in the sequence.  The consumer will emit an event using the header values described in the first item in the list,  The remaining 3 items are placed in the message payload for the next consumer to process.  This is repeated until the routing slip list is empty.
 
 . Describe implementation details for important/complex parts of the system
 . homegrown frameworks
