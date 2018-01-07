@@ -20,6 +20,7 @@ Details about this project are contained in the link:guidebook/guidebook.adoc[gu
 * This project is licensed under the http://www.apache.org/licenses/[Apache License Version 2.0, January 2004].
 * The guidebook structure was created by http://simonbrown.je/[Simon Brown] as part of his work on the https://c4model.com/[C4 Architectural Model].  His books can be https://leanpub.com/b/software-architecture[purchased from LeanPub].
 * Patrick Kua offered https://www.safaribooksonline.com/library/view/oreilly-software-architecture/9781491985274/video315451.html[his thoughts on a travel guide to a software system] which has been link:travel-guide/travel-guide.adoc[captured in this template].
-* https://www.safaribooksonline.com/library/view/the-tao-of/9781617293146/[ The Tao of Microservices] by Richard Rodger
+* https://www.safaribooksonline.com/library/view/the-tao-of/9781617293146/[The Tao of Microservices] by Richard Rodger
+* https://www.safaribooksonline.com/library/view/enterprise-integration-patterns/0321200683/[Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions] by Bobby Woolf, Gregor Hohpe
 
 == List of Changes
