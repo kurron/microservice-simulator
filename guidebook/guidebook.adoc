@@ -1,6 +1,11 @@
 :toc:
 :toc-placement!:
 
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
 
 = Guidebook
 Ron Kurr <rkurr@jvmguy.com>
@@ -20,17 +25,10 @@ Blah, blah, blah.
 image::images/context-diagram.png[Context Diagram]
 
 == Functional Overview
-. Highlight and summarize major functions of the software
-. Is it clear what the system actually does?
-. Is it clear which features, functions, use cases, user stories, etc are significant to the architecture and why?
-. Is it clear who the important users are (roles, actors, personas, etc) and how the system caters for their needs?
-. Is it clear that the above has been used to shape and define the architecture?
-. Is it clear what the system does from a process perspective?
-. What are the major processes and flows of information through the system?
-. Feel free to reference existing documentation
-. The goal is to provide and *overview*
-. Sequence diagram when discussing automated business processes is useful
-. Technical and non-technical people, both inside and outside the immediate development team
+The system is conceptually very simple.  A simulated client will introduce a request into the system, asking for a "question" to be answered.  The request enters into the system and cascades throughout the back end containers  eventually returning the result back to the client.  The client can make requests either through messaging or REST, allowing us to test the two forms of communication.  A very simple control plane is used to alter the behavior of the various containers as the system runs, such as introducing latency or failing health checks, allowing the Operator to run a variety of tests.  The payloads, as they traverse the system, are constructed in such a way so as to provide a "trail" of how the services had to be coordinated in order to fulfill the request.  The Operator has the option of constructing either a wide, shallow system or a narrow, deep one, observing how differently the system behaves with each configuration.
+
+.Sequence Diagram
+image::images/sequence-diagram.png[Sequence Diagram]
 
 == Quality Attributes
 . Summarize key quality attributes
