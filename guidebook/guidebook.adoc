@@ -34,21 +34,19 @@ image::images/sequence-diagram.png[Sequence Diagram]
 The latency and throughput values are controlled by Operator, depending on the experiment being run.  Delays can be introduced into the containers to increase latency.  The Operator also has the option of using sequential or parallel communication algorithms to affect throughput.  Scalability and availability can be controlled by the Operator via the container scheduler being used.  To keep the implementation simple, no security protocols are part of the simulation.  When running in the Amazon cloud, native AWS monitoring and tracing solutions are used.  When running in a development environment, open source equivalents are used.
 
 == Constraints
-. Summarize the constraints your are working in and some of the decisions that have been made for you
-. Time, budget and resources
-. Approved technology lists and technology constraints
-. Target deployment platform
-. Existing systems and integration standards
-. Local standards (e.g. development, coding, etc)
-. Public standards (e.g. HTTP, SOAP, XML, XML Schema, WSDL, etc)
-. Standard protocols
-. Standard message formats
-. Size of software development team
-. Skill profile of the development team
-. Nature of the software being build (et, tactical or strategic)
-. Political constraints
-. Use of internal intellectual property
-. Technical and non-technical people
+
+. Technology
+[options="header"]
+|=======
+|Technology          |Amazon          |Local
+|Distributed tracing |X-Ray           |Zipkin
+|Distributed logging |CloudWatch Logs |Elastic Stack
+|Scheduler           |ECS Fargate     |Swarm
+|Message Schema      |Avro JSON       |Avro JSON
+|Messaging Protocol  |AMQP            |AMQP
+|Reactive Stack      |Reactor         |Reactor
+|OS                  |Amazon Linux    |Amazon Linux
+|=======
 
 == Principles
 . Make it explicit what principles are being followed
