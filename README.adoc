@@ -1,0 +1,24 @@
+== Overview
+This project ...
+
+== Guidebook
+Details about this project are contained in the link:guidebook/guidebook.adoc[guidebook] and should be considered mandatory reading prior to contributing to this project.
+
+== Prerequisites
+
+== Building
+
+== Installation
+
+== Tips and Tricks
+
+== Troubleshooting
+
+== Contributing
+
+== License and Credits
+* This project is licensed under the http://www.apache.org/licenses/[Apache License Version 2.0, January 2004].
+* The guidebook structure was created by http://simonbrown.je/[Simon Brown] as part of his work on the https://c4model.com/[C4 Architectural Model].  His books can be https://leanpub.com/b/software-architecture[purchased from LeanPub].
+* Patrick Kua offered https://www.safaribooksonline.com/library/view/oreilly-software-architecture/9781491985274/video315451.html[his thoughts on a travel guide to a software system] which has been link:travel-guide/travel-guide.adoc[captured in this template].
+
+== List of Changes

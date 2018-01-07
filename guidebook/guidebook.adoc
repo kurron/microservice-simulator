@@ -1,0 +1,218 @@
+:toc:
+:toc-placement!:
+
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
+= Guidebook
+Ron Kurr <rkurr@jvmguy.com>
+
+toc::[]
+
+== Context
+. What is this software project/product/system all about?
+. What is it that is being built?
+. How does it fit into the existing environment? (e.g. systems, business processes, etc)
+. Who is using it? (users, roles, actors, personas, etc)
+. Context Diagram should be included
+. Technical and non-technical audience
+
+== Functional Overview
+. Highlight and summarize major functions of the software
+. Is it clear what the system actually does?
+. Is it clear which features, functions, use cases, user stories, etc are significant to the architecture and why?
+. Is it clear who the important users are (roles, actors, personas, etc) and how the system caters for their needs?
+. Is it clear that the above has been used to shape and define the architecture?
+. Is it clear what the system does from a process perspective?
+. What are the major processes and flows of information through the system?
+. Feel free to reference existing documentation
+. The goal is to provide and *overview*
+. Sequence diagram when discussing automated business processes is useful
+. Technical and non-technical people, both inside and outside the immediate development team
+
+== Quality Attributes
+. Summarize key quality attributes
+. Performance (e.g. latency and throughput)
+. Scalability (e.g. data and traffic volumes)
+. Availability (e.g. uptime, downtime, scheduled maintenance, 24x7, 99.9%, etc)
+. Security (e.g. authentication, authorization, data confidentiality, etc)
+. Extensibility
+. Auditing
+. Monitoring and management
+. Reliability
+. Failover/disaster recovery targets (e.g. manual vs automatic, how long will it take?)
+. Business continuity
+. Interoperability
+. Legal, compliance and regulatory requirements (e.g. data protection act)
+. I18n and L10n
+. Accessibility
+. Usability
+. Use SMART (specific, measurable, achievable, relevant and timely) attributes
+. Technical people only
+
+== Constraints
+. Summarize the constraints your are working in and some of the decisions that have been made for you
+. Time, budget and resources
+. Approved technology lists and technology constraints
+. Target deployment platform
+. Existing systems and integration standards
+. Local standards (e.g. development, coding, etc)
+. Public standards (e.g. HTTP, SOAP, XML, XML Schema, WSDL, etc)
+. Standard protocols
+. Standard message formats
+. Size of software development team
+. Skill profile of the development team
+. Nature of the software being build (et, tactical or strategic)
+. Political constraints
+. Use of internal intellectual property
+. Technical and non-technical people
+
+== Principles
+. Make it explicit what principles are being followed
+. Supply existing references, if they exist
+. Architectural layering strategy
+. No business logic in views
+. No database access in views
+. Use of interfaces
+. Always use an ORM
+. Dependency injection
+. The Hollywood principle
+. High cohesion, low coupling
+. Follow SOLID
+. DRY
+. Ensure all components are stateless (e.g. to ease scaling)
+. Prefer a rich domain model
+. Prefer an anemic domain model
+. Prefer stored procedures
+. Avoid stored procedures
+. Don't reinvent the wheel
+. Approaches to error handling, logging, etc
+. Buy rather than build
+. Technical people only
+
+== Software Architecture
+. Summarize the software architecture
+. What does the "big picture" look like?
+. Is there a clear structure?
+. Is it clear how the system works from the "30,000 foot view"?
+. Does it show major containers and technology choices?
+. Does it show major components and their interactions?
+. What are the key internal interfaces? (e.g. web service between web and business tiers)
+. Technical people only
+
+== External Interfaces
+. What are the key external interfaces?
+.. system-to-system
+.. publicly exposed APIs
+.. exported files
+. Has each interface been thought about from a technical perspective?
+.. what is the technical definition of an interface?
+.. if messaging is being used, which queues and topics are components using to communicate?
+.. what format are the messages (e.g. plain text, Avro, JSON)?
+.. are they synchronous or asynchronous?
+.. are asynchronous messaging links guaranteed?
+.. are subscribers durable where necessary?
+.. can messages be received out of order and is this a problem?
+.. are interfaces idempotent?
+.. is the interface always available or do you need the cache data locally?
+.. how is performance/security/etc catered for?
+. Has each interface been thought about from a non-technical perspective?
+.. who has ownership of the interface?
+.. how often does the interface change and how is versioning handled?
+.. are there service-level agreements in place?
+. A paragraph on each interface covering this topics is sufficient
+. Technical people only
+
+== Code
+. Describe implementation details for important/complex parts of the system
+. homegrown frameworks
+. WebMVC frameworks
+. approach to security
+. domain model
+. component frameworks
+. configuration mechanisms
+. architectural layering
+. exceptions and logging
+. how patterns and principals are implemented
+. short description of each element using diagrams as necessary
+. Technical people only
+
+== Data
+. Record anything that is important from the data perspective
+. What does the data model look like?
+. Where is data stored?
+. Who owns the data?
+. How much storage space is needed for the data?
+. Are there any requirements for long term archival?
+. Are there any requirements for log files and audit trails?
+. Are flat files being used for storage?
+. short description of each element using diagrams as necessary
+. Technical people only, including Operations
+
+== Infrastructure Architecture
+. Describe the physical/virtual hardware and networks the software will be deployed to.
+. Is there a clear physical architecture?
+. What hardware does this include across all tiers?
+. Does it cater for redundancy, failover and disaster recovery if applicable?
+. Is it clear how the chosen hardware components have been sized and selected?
+. If multiple servers and sites are used, what are the network links between them?
+. Who is responsible for support and maintenance of the infrastructure?
+. Are there central teams to look after common infrastructure?
+. Who owns the resources?
+. Are there sufficient environments for development, testing, acceptance, pre-production, production?
+. Provide an infrastructure/network diagram with a short narrative
+. Technical people only, including Operations
+
+== Deployment
+. Describe the mapping between software (containers) and the infrastructure.
+. How and where is the software installed and configured?
+. Is it clear how the software will be deployed across the infrastructure elements described in the Infrastructure Architecture section?
+. What are the options and have they been documented?
+. Is it understood how memory and CPU will be partitioned between the processes running on a single piece of infrastructure?
+. Are any containers/components running in an active-active, active-passive, hot-standby, cold-standby formation?
+. Has the deployment and rollback strategy been defined?
+. What happens in the event of a software or infrastructure failure?
+. Is it clear how data is replicated across sites?
+. Can use tables to show mapping between containers and infrastructure
+. Can use UML deployment diagrams
+. Can use color coding to designate runtime status (primary vs secondary, etc_
+. Technical people only, including Operations
+
+== Operation and Support
+. Be explicit about to run, monitor and manage the software
+. Is it clear how the software provides the ability for Operations to monitor and manage the system?
+. Has is this achieved across all tiers of the architecture?
+. How can Operations diagnose problems?
+. Where are errors and information logged?
+. Do configuration changes require a restart?
+. Are there any manual housekeeping tasks that need to be performed on a regular basis?
+. Does old data need to be periodically archived?
+. A simple narrative should suffice here
+. Technical people only, including Operations
+
+== Development Environment
+. Summarize how new team members set up a development environment
+. Pre-requisite versions of software needed
+. Links to software downloads
+. Links to virtual machines
+. Environment variables
+. Host name entries
+. IDE configuration
+. Build and test instructions
+. Database population scripts
+. Username, passwords and certificates for connecting to services
+. Links to build servers
+. Technical people only, developers specifically
+
+== Decision Log
+. Capture major decisions that have been made
+. Why did you choose technology/framework X over Y and Z?
+. How did you make the selection? PoC? Product evaluation?
+. Did corporate policy or architecture standards force you to select X?
+. Why did you choose the selected architecture?  What other options did you consider?
+. How do you know that the solution satisfies the major non-functional requirements?
+. Short paragraph describing each decision. Include a date of the decision?
+. Technical people only
