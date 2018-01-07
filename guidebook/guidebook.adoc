@@ -1,11 +1,11 @@
 :toc:
 :toc-placement!:
 
-:tip-caption: :bulb:
 :note-caption: :information_source:
+:tip-caption: :bulb:
 :important-caption: :heavy_exclamation_mark:
-:caution-caption: :fire:
 :warning-caption: :warning:
+:caution-caption: :fire:
 
 = Guidebook
 Ron Kurr <rkurr@jvmguy.com>
@@ -15,8 +15,11 @@ toc::[]
 == Context
 This system makes it easy to simulate a solution comprised of many microservices, allowing the testing of the operational aspects of the system, such as the information provided by distributed tracing or the scheduler's ability to self-heal.  The project provides the scripts and containers needed to create the system, either locally or in the Amazon cloud.  The project is meant to be a standalone experiment and does not fit into any existing production environments.
 
-CAUTION: Nerd Speak.
+[CAUTION]
+.Nerd Speak
+===========
 Blah, blah, blah.
+===========
 
 .Context Diagram
 image::images/context-diagram.png[Context Diagram]
