@@ -26,7 +26,10 @@ class ServiceCommandSerializationTest extends Specification implements DataGener
     private ServiceCommand build( int depth )  {
         def subject = randomString()
         def verb = randomString()
+        def failHealthCheck = randomFlag()
         def recurse = { build( depth - 1 ) }
-        depth ? new ServiceCommand( subject: subject, verb: verb, recipientList: depth.collect( recurse ) ) : new ServiceCommand( subject: subject, verb: verb )
+        def range = randomLatency( 0, 1000 )
+        def latency = new ServiceCommand.Latency( minimum: range.first, maximum: range.second )
+        depth ? new ServiceCommand( subject: subject, verb: verb, failHealthCheck: failHealthCheck, latency: latency, recipientList: depth.collect( recurse ) ) : new ServiceCommand( subject: subject, verb: verb, failHealthCheck: failHealthCheck, latency: latency )
     }
 }
