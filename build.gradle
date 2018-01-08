@@ -1,21 +1,7 @@
 allprojects {
-
-    buildscript {
-        repositories {
-            jcenter()
-        }
-        dependencies {
-            classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
-        }
+    repositories {
+        jcenter()
     }
-
-    apply plugin: 'groovy'
-
-    group = 'org.kurron.simulator'
-    ext.builtOn = new Date()
-
-    defaultTasks << 'clean'
-    defaultTasks << 'build'
 
     // construct the task
     task hello {
@@ -26,6 +12,19 @@ allprojects {
 }
 
 subprojects {
+    apply plugin: 'groovy'
+
+    dependencies {
+        compile "org.codehaus.groovy:groovy-all::indy"
+        compile "com.fasterxml.jackson.core:jackson-databind"
+    }
+
+    group = 'org.kurron.simulator'
+    ext.builtOn = new Date()
+
+    defaultTasks << 'clean'
+    defaultTasks << 'build'
+
     // configure the task
     hello {
         doLast {

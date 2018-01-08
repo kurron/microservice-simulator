@@ -1,3 +1,22 @@
+// ---- must duplicate for every sub-project
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
+    }
+}
+
+
 description = 'Holds common objects shared between projects.'
 
 hello.doLast {
