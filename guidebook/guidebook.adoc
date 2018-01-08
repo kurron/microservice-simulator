@@ -101,8 +101,6 @@ These headers are filled in whenever a message is sent to the Headers Exchange, 
 [source,JSON]
 ----
 {
-    <snip>
-
     "recipient-list":
     [
         {
@@ -138,12 +136,25 @@ In the above example, there are two messages described in the sequence but notic
 === Simulated Service Failure
 We need the ability to have a service fail its health checks so that schedulers and altering systems can be tested.  The message payload contains a flag that tells the service to begin failing its health checks going forward.  That is to say, that this service invocation will succeed but from the health checks will begin to fail.
 
-.Recipient List Section
+.Failed Health Checks Section
 [source,JSON]
 ----
 {
-    <snip>
     "fail-health-checks": true
+}
+----
+
+=== Simulated Service Latency
+We need the ability to simulate latency in a service.  The message payload contains a list of integers that is used to constrain the range of randomized processing delays. The range is expressed as milliseconds. If set to 0, no latency is introduced and the service proceeds a quickly as possible.
+
+.Latancy Section
+[source,JSON]
+----
+{
+    "latency": {
+        "minimum": 0,
+        "maximum": 225
+    }
 }
 ----
 
