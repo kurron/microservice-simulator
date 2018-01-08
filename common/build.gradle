@@ -18,7 +18,3 @@ dependencyManagement {
 
 
 description = 'Holds common objects shared between projects.'
-
-hello.doLast {
-    println "- I'm shared by other projects."
-}

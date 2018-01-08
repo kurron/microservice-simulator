@@ -3,12 +3,8 @@ allprojects {
         jcenter()
     }
 
-    // construct the task
-    task hello {
-        doLast { task ->
-            println "I'm $task.project.name"
-        }
-    }
+    defaultTasks << 'clean'
+    defaultTasks << 'build'
 }
 
 subprojects {
@@ -30,14 +26,4 @@ subprojects {
 
     group = 'org.kurron.simulator'
     ext.builtOn = new Date()
-
-    defaultTasks << 'clean'
-    defaultTasks << 'build'
-
-    // configure the task
-    hello {
-        doLast {
-            println "- I depend on microservice-simulator"
-        }
-    }
 }
