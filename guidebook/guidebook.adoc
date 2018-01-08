@@ -167,7 +167,7 @@ No service is perfect and we need to see how the system behaves when errors occu
 {
     "failures": {
         "probability": 75,
-        "status-code" 1010,
+        "status-code": 1010,
         "status-message": "No such image."
     }
 }

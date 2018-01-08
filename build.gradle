@@ -1,0 +1,17 @@
+allprojects {
+    // construct the task
+    task hello {
+        doLast { task ->
+            println "I'm $task.project.name"
+        }
+    }
+}
+
+subprojects {
+    // configure the task
+    hello {
+        doLast {
+            println "- I depend on microservice-simulator"
+        }
+    }
+}

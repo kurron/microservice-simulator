@@ -1,0 +1,3 @@
+hello.doLast {
+    println "- I'm shared by other projects."
+}
