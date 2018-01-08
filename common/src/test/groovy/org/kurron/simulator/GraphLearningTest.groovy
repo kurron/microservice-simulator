@@ -14,7 +14,13 @@ class GraphLearningTest extends Specification implements DataGenerator {
         Graph<String, DefaultEdge> graph = new DirectedAcyclicGraph<>( DefaultEdge )
         def builder = new GraphBuilder( graph )
         def vertexes = (1..10).collect { it as String }
-        builder.addVertex( vertexes ).addEdge( vertexes[0], vertexes[1] ).addEdge( vertexes[1], vertexes[2] )
+        def serviceTier = vertexes.subList( 0, 8 )
+        def dataTier = vertexes.subList( 8, vertexes.size() )
+        def combinations = [serviceTier,dataTier].combinations()
+        builder.addVertex( serviceTier ).addVertex( dataTier )
+        combinations.each { from, to ->
+            builder.addEdge( from, to )
+        }
 
         when: 'the graph is dumped'
         def edges = graph.edgeSet()
