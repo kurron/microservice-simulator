@@ -1,3 +1,5 @@
+description = 'Simulates a microservice'
+
 hello.doLast {
     println "- I simulate a microservice."
 }

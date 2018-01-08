@@ -1,4 +1,22 @@
 allprojects {
+
+    buildscript {
+        repositories {
+            jcenter()
+        }
+        dependencies {
+            classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+        }
+    }
+
+    apply plugin: 'groovy'
+
+    group = 'org.kurron.simulator'
+    ext.builtOn = new Date()
+
+    defaultTasks << 'clean'
+    defaultTasks << 'build'
+
     // construct the task
     task hello {
         doLast { task ->
