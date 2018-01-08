@@ -9,7 +9,7 @@ class ServiceCommandSerializationTest extends Specification implements DataGener
     def 'verify serialization works'() {
 
         given: 'valid object'
-        def original = build( 3 )
+        def original = build( 6 )
 
         when: 'the original is encoded into JSON'
         def mapper = new ObjectMapper().enable( SerializationFeature.INDENT_OUTPUT )
@@ -21,10 +21,12 @@ class ServiceCommandSerializationTest extends Specification implements DataGener
 
         then: 'the two versions match'
         original == reconstituted
-
     }
 
     private ServiceCommand build( int depth )  {
-        depth ? new ServiceCommand( subject: randomString(), verb: randomString(), recipientList: depth.collect { build( depth - 1 ) } ) : new ServiceCommand( subject: randomString(), verb: randomString() )
+        def subject = randomString()
+        def verb = randomString()
+        def recurse = { build( depth - 1 ) }
+        depth ? new ServiceCommand( subject: subject, verb: verb, recipientList: depth.collect( recurse ) ) : new ServiceCommand( subject: subject, verb: verb )
     }
 }
