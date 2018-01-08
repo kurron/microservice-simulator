@@ -12,11 +12,20 @@ allprojects {
 }
 
 subprojects {
+
     apply plugin: 'groovy'
 
     dependencies {
         compile "org.codehaus.groovy:groovy-all::indy"
         compile "com.fasterxml.jackson.core:jackson-databind"
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+        testCompile( "org.spockframework:spock-spring" ) {
+            exclude module: 'groovy-all'
+        }
+        testCompile( "org.spockframework:spock-core" )  {
+            exclude module: 'groovy-all'
+        }
     }
 
     group = 'org.kurron.simulator'
