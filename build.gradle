@@ -22,6 +22,7 @@ subprojects {
         testCompile( "org.spockframework:spock-core" )  {
             exclude module: 'groovy-all'
         }
+        testCompile 'org.jgrapht:jgrapht-core:1.1.0'
     }
 
     group = 'org.kurron.simulator'
