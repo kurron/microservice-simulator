@@ -1,18 +1,20 @@
 package org.kurron.simulator
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import spock.lang.Specification
 
-class ServiceCommandSerializationTest extends Specification {
+class ServiceCommandSerializationTest extends Specification implements DataGenerator {
 
     def 'verify serialization works'() {
 
         given: 'valid object'
-        def original = new ServiceCommand( subject: 'subject', verb: 'verb', recipientList: [] )
+        def original = build( 3 )
 
         when: 'the original is encoded into JSON'
-        def mapper = new ObjectMapper()
+        def mapper = new ObjectMapper().enable( SerializationFeature.INDENT_OUTPUT )
         def bytes = mapper.writeValueAsBytes( original )
+        println mapper.writeValueAsString( original )
 
         and: 'and decoded back again'
         def reconstituted = mapper.readValue( bytes, ServiceCommand ) as ServiceCommand
@@ -20,5 +22,9 @@ class ServiceCommandSerializationTest extends Specification {
         then: 'the two versions match'
         original == reconstituted
 
+    }
+
+    private ServiceCommand build( int depth )  {
+        depth ? new ServiceCommand( subject: randomString(), verb: randomString(), recipientList: depth.collect { build( depth - 1 ) } ) : new ServiceCommand( subject: randomString(), verb: randomString() )
     }
 }
