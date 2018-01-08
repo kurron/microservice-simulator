@@ -147,7 +147,7 @@ We need the ability to have a service fail its health checks so that schedulers 
 === Simulated Service Latency
 We need the ability to simulate latency in a service.  The message payload contains a list of integers that is used to constrain the range of randomized processing delays. The range is expressed as milliseconds. If set to 0, no latency is introduced and the service proceeds a quickly as possible.
 
-.Latancy Section
+.Latency Section
 [source,JSON]
 ----
 {
@@ -157,6 +157,22 @@ We need the ability to simulate latency in a service.  The message payload conta
     }
 }
 ----
+
+=== Simulated Errors In Processing
+No service is perfect and we need to see how the system behaves when errors occur.  The Operator can specify when errors occur by specifying a probability value from 0 (never fails) to 100 (always fails).  The resulting status code and message can also be specified.
+
+.Failures Section
+[source,JSON]
+----
+{
+    "failures": {
+        "probability": 75,
+        "status-code" 1010,
+        "status-message": "No such image."
+    }
+}
+----
+
 
 . Describe implementation details for important/complex parts of the system
 . homegrown frameworks
