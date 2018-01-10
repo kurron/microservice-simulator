@@ -22,7 +22,6 @@ subprojects {
         testCompile( "org.spockframework:spock-core" )  {
             exclude module: 'groovy-all'
         }
-        testCompile 'org.jgrapht:jgrapht-core:1.1.0'
         testCompile 'org.apache.tinkerpop:tinkergraph-gremlin:3.3.1'
     }
 
