@@ -1,11 +1,13 @@
 package org.kurron.simulator
 
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__
+import static org.apache.tinkerpop.gremlin.process.traversal.P.eq
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.as as TinkerPopAs
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.both
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.cyclicPath
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.unfold
+
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph
 import spock.lang.Specification
-
-import static org.apache.tinkerpop.gremlin.process.traversal.P.eq
-import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.*
 
 class TinkerPopLearningTest extends Specification implements DataGenerator {
 
@@ -15,7 +17,7 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
         expect:
         def graph = TinkerGraph.open()
         def vertices = (1..10).collect { graph.addVertex( it as String ) }
-        while( false == vertices.empty ) {
+        while(!vertices.empty) {
             def from = vertices.pop()
             def to = vertices.pop()
             from.addEdge( 'linked', to )
@@ -32,7 +34,7 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
                           .emit( cyclicPath().or().not( both() ) ).repeat( both() ).until( cyclicPath() )
                           .path().aggregate( 'p' )
                           .unfold().dedup()
-                          .map( __.as( 'v' ).select( 'p' ).unfold()
+                          .map( TinkerPopAs( 'v' ).select( 'p' ).unfold()
                           .filter( unfold().where( eq( 'v' ) ) )
                           .unfold().dedup().fold() )
                           .dedup()
