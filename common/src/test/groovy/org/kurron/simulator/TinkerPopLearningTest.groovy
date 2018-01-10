@@ -28,13 +28,15 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
         //def result = graph.traversal().V().has("name","marko").out("created").values("name").toList()
 
         // http://tinkerpop.apache.org/docs/current/recipes/#connected-components
-        def result = graph.traversal().V().emit( cyclicPath().or().not( both() ) ).repeat( both() ).until( cyclicPath() ).
-                             path().aggregate( 'p' ).
-                             unfold().dedup().
-                             map( __.as( 'v' ).select( 'p' ).unfold().
-                             filter( unfold().where( eq( 'v' ) ) ).
-                             unfold().dedup().fold() ).
-                             dedup().toList()
+        def result = graph.traversal().V()
+                          .emit( cyclicPath().or().not( both() ) ).repeat( both() ).until( cyclicPath() )
+                          .path().aggregate( 'p' )
+                          .unfold().dedup()
+                          .map( __.as( 'v' ).select( 'p' ).unfold()
+                          .filter( unfold().where( eq( 'v' ) ) )
+                          .unfold().dedup().fold() )
+                          .dedup()
+                          .toList()
         println( result )
     }
 }
