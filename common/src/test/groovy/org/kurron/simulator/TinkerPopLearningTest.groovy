@@ -1,7 +1,6 @@
 package org.kurron.simulator
 
 import static org.apache.tinkerpop.gremlin.process.traversal.P.eq
-import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.V
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.as as TinkerPopAs
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.both
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.cyclicPath
@@ -9,7 +8,6 @@ import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.unfold
 
 import org.apache.tinkerpop.gremlin.structure.Vertex
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph
-import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertex
 import spock.lang.Specification
 
 class TinkerPopLearningTest extends Specification implements DataGenerator {
@@ -18,21 +16,21 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
     def 'learning test'() {
 
         expect:
+        def labels = ['alpha','bravo','charlie','delta','echo','foxtrot','gulf']
         def graph = TinkerGraph.open()
-        def vertices = (1..6).collect {
-            def label = Integer.toHexString(it).toUpperCase()
-            graph.addVertex( 'name', label )
+        def vertices = labels.collect {
+            graph.addVertex( it )
         }
-        def alpha = vertices.pop()
-        def bravo = vertices.pop()
-        def charlie = vertices.pop()
-        def delta = vertices.pop()
+        def alpha = vertices.remove( 0 )
+        def bravo = vertices.remove( 0 )
+        def charlie = vertices.remove( 0 )
+        def delta = vertices.remove( 0 )
         alpha.addEdge( 'linked', bravo )
         bravo.addEdge( 'linked', charlie )
         bravo.addEdge( 'linked', delta )
 
-        def echo = vertices.pop()
-        def foxtrot = vertices.pop()
+        def echo = vertices.remove( 0 )
+        def foxtrot = vertices.remove( 0 )
         echo.addEdge( 'linked', foxtrot )
 
 /*
@@ -50,6 +48,7 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
         // http://tinkerpop.apache.org/docs/current/recipes/#connected-components
         def result = graph.traversal().V()
                           .emit( cyclicPath().or().not( both() ) ).repeat( both() ).until( cyclicPath() )
+                          //.out( 'linked' )
                           .path().aggregate( 'p' )
                           .unfold().dedup()
                           .map( TinkerPopAs( 'v' ).select( 'p' ).unfold()
@@ -58,7 +57,7 @@ class TinkerPopLearningTest extends Specification implements DataGenerator {
                           .dedup()
                           .toList()
         result.each { List<Vertex> path ->
-            println path.collect { it.id() }.join( '->' )
+            println path.collect { it.label() }.join( '->' )
         }
     }
 }
